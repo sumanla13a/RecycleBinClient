@@ -23,7 +23,7 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 import { AdvancedformComponent } from './advancedform/advancedform.component';
-
+import { AddItemCanActivate } from './add-item/add-item.guard';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({}), http, options);
@@ -53,11 +53,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ItemListResolver,
     SingleItemResolver,
     AddItemService,
-     {
-    provide: AuthHttp,
-    useFactory: authHttpServiceFactory,
-    deps: [ Http, RequestOptions ]
-  }],
+    AddItemCanActivate, {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [ Http, RequestOptions ]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

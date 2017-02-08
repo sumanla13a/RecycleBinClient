@@ -29,20 +29,12 @@ export class AddItemComponent implements OnInit {
 		});
 	}
 
-	submit() {
-		console.log(this.addItemForm.value);
-		this.itemSrvc.postForm(this.addItemForm.value);
-	}
-
-<<<<<<< c13673d9b9ddaf4941aaa59ea3a4b4f5050eef02
 	ngOnInit() {
 		this.getStates();
 	}
-=======
-  submit() {
-    this.itemSrvc.postForm(this.addItemForm.value);
-  }
->>>>>>> implements search
+	submit() {
+		this.itemSrvc.postForm(this.addItemForm.value);
+	}
 
 	states: [any];
 	getStates() {
@@ -54,7 +46,6 @@ export class AddItemComponent implements OnInit {
 	cities: [any];
 	populateCity(state:string) {
 		this.addItmSrvc.getCities(state, function (data: any) {
-			console.log(data.json().cities);
 			this.cities = data.json().cities;
 		}.bind(this))
 	}

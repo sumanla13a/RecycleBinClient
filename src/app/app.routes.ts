@@ -5,6 +5,7 @@ import { ErrorComponent } from './error/error.component';
 
 import { ItemListResolver } from './items-list/items.resolver';
 import { AddItemComponent } from './add-item/add-item.component';
+import { AddItemCanActivate } from './add-item/add-item.guard';
 import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 
@@ -21,7 +22,8 @@ const routes: Routes = [
 		}
 	}, {
 		path: 'items/add',
-		component: AddItemComponent
+		component: AddItemComponent,
+		canActivate: [AddItemCanActivate]
 	},{
 		path: 'items/:id',
 		component: SingleItemComponent,
