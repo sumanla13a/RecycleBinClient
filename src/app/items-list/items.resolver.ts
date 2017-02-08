@@ -6,9 +6,8 @@ import { ItemsService } from './items.service';
 @Injectable()
 export class ItemListResolver implements Resolve<any> {
 	constructor(private itemSrvc : ItemsService) {
-		console.log('resolving');
 	}
 	resolve(route: ActivatedRouteSnapshot):Observable<any> | Promise<any> {
-		return this.itemSrvc.ensureLoaded({}, true);
+		return this.itemSrvc.ensureLoaded({});
 	}
 }

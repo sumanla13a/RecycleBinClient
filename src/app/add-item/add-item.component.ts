@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { ItemsService } from '../items-list/items.service';
 
 @Component({
   selector: 'app-add-item',
@@ -9,7 +10,7 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 })
 export class AddItemComponent implements OnInit {
   addItemForm:FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private itemSrvc: ItemsService) {
   	this.addItemForm = fb.group({
   		name: ['', Validators.required],
   		description: [''],
@@ -28,6 +29,7 @@ export class AddItemComponent implements OnInit {
 
   submit() {
   	console.log(this.addItemForm.value);
+    this.itemSrvc.postForm(this.addItemForm.value);
   }
 
   ngOnInit() {
