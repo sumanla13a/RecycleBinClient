@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'toolbar',
   templateUrl: `./toolbar.component.html`,
+  styleUrls: [`./toolbar.component.css`],
   providers:[AuthService]
 })
 export class ToolbarComponent {
