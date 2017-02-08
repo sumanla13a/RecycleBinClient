@@ -45,4 +45,11 @@ export class AddItemComponent implements OnInit {
 		}.bind(this))
 	}
 
+	cities: [any];
+	populateCity(state:string) {
+		this.addItmSrvc.getCities(state, function (data: any) {
+			console.log(data.json().cities);
+			this.cities = data.json().cities;
+		}.bind(this))
+	}
 }

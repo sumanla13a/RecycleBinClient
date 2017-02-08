@@ -16,4 +16,10 @@ export class AddItemService {
             }
         )
     }
-}
+    getCities(state,callback): void {
+        this.http.request(BaseUrl + '/zips/getCities/'+state).subscribe(
+            (result: Response) => {
+                callback(result)
+            }
+        )
+    }}
