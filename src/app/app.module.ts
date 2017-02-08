@@ -22,11 +22,14 @@ import { RecycleBinRoutes } from './app.routes';
 
 import { ItemListResolver } from './items-list/items.resolver';
 import { AddItemComponent } from './add-item/add-item.component';
+
 import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 import { AdvancedformComponent } from './advancedform/advancedform.component';
 import { AddItemCanActivate } from './add-item/add-item.guard';
-import { UpdateItemComponent } from './update-item/update-item.component';
+
+import { UploadImageComponent } from './upload-image/upload-image.component';
+
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({}), http, options);
 }
@@ -40,7 +43,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AddItemComponent,
     SingleItemComponent,
     AdvancedformComponent,
-    UpdateItemComponent
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,

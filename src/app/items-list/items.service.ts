@@ -76,7 +76,9 @@ export class ItemsService {
   postForm(data:any) {
 	this.defer = new Promise((resolve, reject) => {
 		this.authHttp.post(BaseUrl + '/items', data).subscribe(
-			res => this.router.navigate(['/items'])
+			//res => this.router.navigate(['/home'])
+			res =>{ 
+				this.router.navigate(['/upload'],{queryParams:{id:res.json().data._id}})}
 		);
 	});
   }
