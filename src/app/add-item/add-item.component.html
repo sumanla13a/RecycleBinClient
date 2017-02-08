@@ -3,56 +3,52 @@
 		<div>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<input type="text" [formControl]="addItemForm.controls['name']" class="mdl-textfield__input" id="addItemFormName" name="name">
-			    <label class="mdl-textfield__label" for="addItemFormName">Name</label>
-			    <span class="error_happens" *ngIf="!addItemForm.controls['name'].valid && addItemForm.controls['name'].touched" >Required</span>
+				<label class="mdl-textfield__label" for="addItemFormName">Name</label>
+				<span class="error_happens" *ngIf="!addItemForm.controls['name'].valid && addItemForm.controls['name'].touched">Required</span>
 			</div>
 		</div>
 		<div>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<input class="mdl-textfield__input" id="details" name="email" [formControl]="addItemForm.controls['details']">	
-			    <label class="mdl-textfield__label" for="addItemFormEmail">Details</label>
+				<input class="mdl-textfield__input" id="details" name="email" [formControl]="addItemForm.controls['details']">
+				<label class="mdl-textfield__label" for="addItemFormEmail">Details</label>
 			</div>
 		</div>
 		<div>
 			<div class="mdl-textfield mdl-js-textfield">
-				<textarea class="mdl-textfield__input" name="description" [formControl]="addItemForm.controls['description']" id="" cols="30" rows="10"></textarea>
-			    <label class="mdl-textfield__label" for="sample5">Text lines...</label>
+				<textarea class="mdl-textfield__input" name="description" [formControl]="addItemForm.controls['description']" id="" cols="30"
+					rows="10"></textarea>
+					<label class="mdl-textfield__label" for="sample5">Text lines...</label>
 			</div>
 		</div>
 		<div>
 			<div class="mdl-textfield mdl-js-textfield">
-				<input type="text" [formControl]="addItemForm.controls['contact'].controls['email']" class="mdl-textfield__input" id="addItemFormEmail" name="email">
-			    <label class="mdl-textfield__label" for="addItemFormEmail">Email</label>
-			    <span class="error_happens" *ngIf="!addItemForm.controls['contact'].controls['email'].valid && addItemForm.controls['contact'].controls['email'].touched" >Required</span>
+				<input type="text" [formControl]="addItemForm.controls['contact'].controls['email']" class="mdl-textfield__input" id="addItemFormEmail"
+					name="email">
+					<label class="mdl-textfield__label" for="addItemFormEmail">Email</label>
+					<span class="error_happens" *ngIf="!addItemForm.controls['contact'].controls['email'].valid && addItemForm.controls['contact'].controls['email'].touched">Required</span>
 			</div>
 		</div>
 		<div>
 			<div class="mdl-textfield mdl-js-textfield">
-				<input type="text" [formControl]="addItemForm.controls['contact'].controls['phone']" class="mdl-textfield__input" id="addItemFormPhone" name="phone">
-			    <label class="mdl-textfield__label" for="addItemFormPhone">Phone No.</label>
+				<input type="text" [formControl]="addItemForm.controls['contact'].controls['phone']" class="mdl-textfield__input" id="addItemFormPhone"
+					name="phone">
+					<label class="mdl-textfield__label" for="addItemFormPhone">Phone No.</label>
 			</div>
 		</div>
-		 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-		    <select id="state" name="state" class="mdl-selectfield__select" [formControl]="addItemForm.controls['state']">
-		        <option value=""></option>
-		        <option value="192">Abkhazia</option>
-		        <option value="1">Afghanistan</option>
-		        <option value="255">Aland</option>
+		<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+			<select id="state" name="state" class="mdl-selectfield__select" [formControl]="addItemForm.controls['state']" (change)="populateCity(addItemForm.value.state)">
+				<option *ngFor="let item of states " [value]="item.state ">{{item.state}}</option>
 		    </select>
-		    <label for="state" class="mdl-selectfield__label">State</label>
+		    <label for="state " class="mdl-selectfield__label ">State</label>
 	    </div>
-	    {{addItemForm.value.state}}
-	    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-		    <select id="city" name="city" class="mdl-selectfield__select" [formControl]="addItemForm.controls['city']">
-		        <option value=""></option>
-		        <option value="192">Abkhazia</option>
-		        <option value="1">Afghanistan</option>
-		        <option value="255">Aland</option>
+	    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label ">
+		    <select id="city " name="city " class="mdl-selectfield__select " [formControl]="addItemForm.controls[ 'city'] ">
+		        <option *ngFor="let item of cities " [value]="item.city ">{{item.city}}</option>
 		    </select>
-		    <label for="city" class="mdl-selectfield__label">City</label>
+		    <label for="city " class="mdl-selectfield__label ">City</label>
 		</div>
 		<br>
 		<br>
-		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit" [disabled]="!addItemForm.valid">Submit</button>
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect " type="submit " [disabled]="!addItemForm.valid ">Submit</button>
 	</form>
 </div>

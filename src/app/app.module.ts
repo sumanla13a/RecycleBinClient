@@ -12,6 +12,8 @@ import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { ItemsService } from './items-list/items.service';
 import { ErrorComponent } from './error/error.component';
+import { AddItemService } from './add-item/add-item.service';
+
 
 import { RecycleBinRoutes } from './app.routes';
 
@@ -20,7 +22,7 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp( new AuthConfig({}), http, options);
+  return new AuthHttp(new AuthConfig({}), http, options);
 }
 
 @NgModule({
@@ -43,7 +45,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AuthService,
     ItemsService,
     ItemListResolver,
-    SingleItemResolver, {
+    SingleItemResolver,
+    AddItemService,
+     {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [ Http, RequestOptions ]
