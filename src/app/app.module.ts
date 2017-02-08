@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { DatePickerModule } from 'ng2-datepicker';
+import { Ng2MapModule } from 'ng2-map';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -25,7 +26,7 @@ import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 import { AdvancedformComponent } from './advancedform/advancedform.component';
 import { AddItemCanActivate } from './add-item/add-item.guard';
-
+import { UpdateItemComponent } from './update-item/update-item.component';
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({}), http, options);
 }
@@ -38,7 +39,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ErrorComponent,
     AddItemComponent,
     SingleItemComponent,
-    AdvancedformComponent
+    AdvancedformComponent,
+    UpdateItemComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HttpModule,
     RecycleBinRoutes,
     ReactiveFormsModule,
-    DatePickerModule
+    DatePickerModule,
+    Ng2MapModule
   ],
   providers: [
     AuthService,

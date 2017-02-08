@@ -9,6 +9,8 @@ import { AddItemCanActivate } from './add-item/add-item.guard';
 import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 
+import { UpdateItemComponent } from './update-item/update-item.component';
+
 const routes: Routes = [
 	{
 		path:'',

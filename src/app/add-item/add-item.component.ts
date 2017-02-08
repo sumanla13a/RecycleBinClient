@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ItemsService } from '../items-list/items.service';
 import { AddItemService } from '../add-item/add-item.service';
 import { AuthService } from '../services/auth.service'; 
+import { Ng2MapComponent } from 'ng2-map';
+
+Ng2MapComponent['apiUrl'] = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9KSi-1KtZY0J8xFZp_i23nd6tXyiYy84&libraries=visualization,places";
 
 @Component({
 	selector: 'app-add-item',
@@ -12,7 +15,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class AddItemComponent implements OnInit {
 	addItemForm: FormGroup;
-	constructor(private fb: FormBuilder, private itemSrvc: ItemsService, private addItmSrvc: AddItemService, private auth: AuthService) {
+	states: [any];
+	cities: [any];
+	positions = [];
+	state:string;
+	city:string;
+	coords:any;
+	constructor(private fb: FormBuilder, private itemSrvc: ItemsService, private addItmSrvc: AddItemService, private auth: AuthService, private ref: ChangeDetectorRef) {
 		this.addItemForm = fb.group({
 			name: ['', Validators.required],
 			description: [''],
@@ -24,8 +33,10 @@ export class AddItemComponent implements OnInit {
 				],
 				phone: ['']
 			}),
+			category: ['', Validators.required],
+			location: ['', Validators.required]/*,
 			state: ['', Validators.required],
-			city: ['', Validators.required]
+			city: ['', Validators.required]*/
 		});
 	}
 
@@ -35,20 +46,54 @@ export class AddItemComponent implements OnInit {
 	submit() {
 		let data:Object = this.addItemForm.value;
 		data['fbId'] = this.auth.currentUser['user_id'];
+		data['city'] = this.city;
+		data['state'] = this.state;
+		data['coords'] = this.coords;
 		this.itemSrvc.postForm(this.addItemForm.value);
 	}
 
-	states: [any];
 	getStates() {
 		this.addItmSrvc.getStates(function (data: any) {
 			this.states = data.json().states;
 		}.bind(this))
 	}
 
-	cities: [any];
 	populateCity(state:string) {
 		this.addItmSrvc.getCities(state, function (data: any) {
 			this.cities = data.json().cities;
 		}.bind(this))
 	}
+
+	autocomplete: google.maps.places.Autocomplete;
+  	address: any = {};
+
+
+  	initialized(autocomplete: any) {
+    	this.autocomplete = autocomplete;
+  	}
+  	placeChanged() {
+
+    	let place = this.autocomplete.getPlace();
+
+    	for (var i = 0; i < place.address_components.length; i++) {
+      		var addressType = place.address_components[i].types[0];
+      		this.address[addressType] = place.address_components[i].long_name;
+    	}
+    	for (var ac = 0; ac < place.address_components.length; ac++) {
+		    var component = place.address_components[ac];
+
+		    switch(component.types[0]) {
+		        case 'locality':
+		            this.city = component.long_name.toUpperCase();
+		            break;
+		        case 'administrative_area_level_1':
+		            this.state = component.short_name.toUpperCase();
+		            break;
+		    }
+		};
+    	this.coords = {
+    		coordinates: [place.geometry.location.lng(), place.geometry.location.lat()]
+    	};
+    	this.ref.detectChanges();
+  	}
 }

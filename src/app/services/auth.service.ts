@@ -10,7 +10,6 @@ export class AuthService {
 	currentUser:Object;
 	constructor(private ngZ:NgZone) {
 		this.currentUser = JSON.parse(localStorage.getItem('profile'));
-		console.log(this.currentUser);
 	}
 	public login() {
 			this.lock.show((error: string, profile: Object, id_token: string) => {
