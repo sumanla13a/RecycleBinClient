@@ -33,4 +33,16 @@ export class AuthService {
 		localStorage.removeItem('id_token');
 	}
 
+	public nearMe() {
+		return new Promise((resolve, reject) => {
+			function success(position) {
+	            resolve({
+	                lat: position.coords.latitude,
+	                lng: position.coords.longitude,
+	            });
+	        }
+        	navigator.geolocation.getCurrentPosition(success, reject);
+
+		});
+	}
 }

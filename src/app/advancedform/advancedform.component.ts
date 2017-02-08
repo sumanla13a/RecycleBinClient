@@ -16,13 +16,14 @@ export class AdvancedformComponent implements OnInit {
   	category: '',
   	city: ''
   }
+  location:any[];
   constructor(private itemSrvc: ItemsService) { }
 
   ngOnInit() {
   }
   filterData() {
   	let query = {
-  		name: this.filter.name,
+  		// name: this.filter.name,
   		state: this.filter.state,
   		city: this.filter.city,
   		category: this.filter.category,
@@ -31,10 +32,27 @@ export class AdvancedformComponent implements OnInit {
   			$lte: new Date(this.filter.to['formatted'])
   		}
   	};
+  	if(this.filter.name) {
+  		query["$text"] = {
+  		 	$search : this.filter.name
+  		};
+  	}
+  	if(this.location && this.location.length) {
+  		query["coords.coordinates"] ={
+  			"$geoWithin": {
+  				"$centerSphere":[ this.location, 1000000000 ]
+  			}
+  		}
+  	}
   	this.itemSrvc.ensureLoaded(query);
   }
 
   nearMe() {
-
+	navigator.geolocation.getCurrentPosition(
+		position => {
+			this.location = [position.coords.longitude, position.coords.latitude]
+			this.filterData();
+		}, console.log
+	);
   }
 }

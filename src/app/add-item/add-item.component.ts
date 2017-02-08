@@ -34,9 +34,15 @@ export class AddItemComponent implements OnInit {
 		this.itemSrvc.postForm(this.addItemForm.value);
 	}
 
+<<<<<<< c13673d9b9ddaf4941aaa59ea3a4b4f5050eef02
 	ngOnInit() {
 		this.getStates();
 	}
+=======
+  submit() {
+    this.itemSrvc.postForm(this.addItemForm.value);
+  }
+>>>>>>> implements search
 
 	states: [any];
 	getStates() {
