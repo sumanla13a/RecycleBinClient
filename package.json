@@ -24,6 +24,8 @@
     "angular2-jwt": "^0.1.28",
     "angular2-toaster": "^2.0.0",
     "core-js": "^2.4.1",
+    "mydatepicker": "github:kekeh/mydatepicker",
+    "ng2-datepicker": "^1.4.10",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"

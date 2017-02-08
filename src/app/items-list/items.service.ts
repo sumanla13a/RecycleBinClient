@@ -16,6 +16,7 @@ export type items = {
 	description?: string,
 	details?: string,
 	contact: contacts,
+	category: string,
 	state: string,
 	city: string,
 	coords: number[],

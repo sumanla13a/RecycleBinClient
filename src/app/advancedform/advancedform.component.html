@@ -1,0 +1,44 @@
+<div class="block">
+	<div class="inline width-13">
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<input type="text" [(ngModel)]="filter.name" class="mdl-textfield__input" id="addItemFormName" name="name">
+		    <label class="mdl-textfield__label" for="addItemFormName">Name</label>
+		</div>
+	</div>
+	<div class="width-13 mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label inline">
+	    <select id="category" name="category" class="mdl-selectfield__select" [(ngModel)]="filter.category">
+	        <option value=""></option>
+	        <option value="offered">Offered</option>
+	        <option value="wanted">Wanted</option>
+	    </select>
+	    <label for="category" class="mdl-selectfield__label">Category</label>
+	</div>
+	<div class="width-13 mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label inline">
+	    <select id="state" name="state" class="mdl-selectfield__select" [(ngModel)]="filter.state">
+	        <option value=""></option>
+	        <option value="offered">Offered</option>
+	        <option value="wanted">Wanted</option>
+	    </select>
+	    <label for="state" class="mdl-selectfield__label">State</label>
+	</div>
+	<div class="width-13 mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label inline">
+	    <select id="city" name="city" class="mdl-selectfield__select" [(ngModel)]="filter.city">
+	        <option value=""></option>
+	        <option value="offered">Offered</option>
+	        <option value="wanted">Wanted</option>
+	    </select>
+	    <label for="city" class="mdl-selectfield__label">City</label>
+	</div>
+	<div class="inline width-13">
+		<ng2-datepicker [(ngModel)]="filter.from" placeholder="YYYY-MM-DD">From</ng2-datepicker>
+	</div>
+	<div class="inline width-13">
+		<ng2-datepicker [(ngModel)]="filter.to" placeholder="YYYY-MM-DD"></ng2-datepicker>
+	</div>
+	<div class="inline width-13">
+	    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="filterData()">Filter</button>
+	</div>
+	<div class="inline width-13">
+	    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="nearMe()">Near Me</button>
+	</div>
+</div>
