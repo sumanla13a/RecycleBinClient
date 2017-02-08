@@ -14,6 +14,7 @@ import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { ItemsService } from './items-list/items.service';
 import { ErrorComponent } from './error/error.component';
 import { AddItemService } from './add-item/add-item.service';
+import { AdvancedFormService } from './advancedform/advancedform.service';
 
 
 import { RecycleBinRoutes } from './app.routes';
@@ -50,6 +51,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   providers: [
     AuthService,
     ItemsService,
+    AdvancedFormService,
     ItemListResolver,
     SingleItemResolver,
     AddItemService,

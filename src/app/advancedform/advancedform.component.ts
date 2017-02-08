@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from '../items-list/items.service';
+import { AdvancedFormService } from '../advancedform/advancedform.service';
 
 @Component({
   selector: 'app-advancedform',
@@ -17,10 +18,25 @@ export class AdvancedformComponent implements OnInit {
   	city: ''
   }
   location:any[];
-  constructor(private itemSrvc: ItemsService) { }
+  constructor(private itemSrvc: ItemsService,private advanceFormSrvc:AdvancedFormService) { }
 
   ngOnInit() {
+	  		this.getStates();
   }
+
+  states: [any];
+	getStates() {
+		this.advanceFormSrvc.getStates(function (data: any) {
+			this.states = data.json().states;
+		}.bind(this))
+	}
+
+cities: [any];
+	populateCity(state:string) {
+		this.advanceFormSrvc.getCities(state, function (data: any) {
+			this.cities = data.json().cities;
+		}.bind(this))
+	}
   filterData() {
   	type createdAt = {
   		$gte?: Date,
