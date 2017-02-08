@@ -35,13 +35,11 @@
 		 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 		    <select id="state" name="state" class="mdl-selectfield__select" [formControl]="addItemForm.controls['state']">
 		        <option value=""></option>
-		        <option value="192">Abkhazia</option>
-		        <option value="1">Afghanistan</option>
-		        <option value="255">Aland</option>
+				<option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
 		    </select>
 		    <label for="state" class="mdl-selectfield__label">State</label>
 	    </div>
-	    {{addItemForm.value.state}}
+	    <!--{{addItemForm.value.state}}-->
 	    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 		    <select id="city" name="city" class="mdl-selectfield__select" [formControl]="addItemForm.controls['city']">
 		        <option value=""></option>

@@ -12,6 +12,8 @@ import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { ItemsService } from './items-list/items.service';
 import { ErrorComponent } from './error/error.component';
+import { AddItemService } from './add-item/add-item.service';
+
 
 import { RecycleBinRoutes } from './app.routes';
 
@@ -19,7 +21,7 @@ import { ItemListResolver } from './items-list/items.resolver';
 import { AddItemComponent } from './add-item/add-item.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp( new AuthConfig({}), http, options);
+  return new AuthHttp(new AuthConfig({}), http, options);
 }
 
 @NgModule({
@@ -37,11 +39,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     RecycleBinRoutes,
     ReactiveFormsModule
   ],
-  providers: [AuthService, ItemsService, ItemListResolver, {
-    provide: AuthHttp,
-    useFactory: authHttpServiceFactory,
-    deps: [ Http, RequestOptions ]
-  }],
+  providers: [AuthService, AddItemService,
+    ItemsService, ItemListResolver, {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
