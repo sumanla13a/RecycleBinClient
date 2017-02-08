@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ItemsService } from '../items-list/items.service';
 import { AddItemService } from '../add-item/add-item.service';
-
+import { AuthService } from '../services/auth.service'; 
 
 @Component({
 	selector: 'app-add-item',
@@ -12,7 +12,7 @@ import { AddItemService } from '../add-item/add-item.service';
 })
 export class AddItemComponent implements OnInit {
 	addItemForm: FormGroup;
-	constructor(private fb: FormBuilder, private itemSrvc: ItemsService, private addItmSrvc: AddItemService) {
+	constructor(private fb: FormBuilder, private itemSrvc: ItemsService, private addItmSrvc: AddItemService, private auth: AuthService) {
 		this.addItemForm = fb.group({
 			name: ['', Validators.required],
 			description: [''],
@@ -33,6 +33,8 @@ export class AddItemComponent implements OnInit {
 		this.getStates();
 	}
 	submit() {
+		let data:Object = this.addItemForm.value;
+		data['fbId'] = this.auth.currentUser['user_id'];
 		this.itemSrvc.postForm(this.addItemForm.value);
 	}
 

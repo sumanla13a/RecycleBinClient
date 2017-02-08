@@ -22,16 +22,31 @@ export class AdvancedformComponent implements OnInit {
   ngOnInit() {
   }
   filterData() {
-  	let query = {
-  		// name: this.filter.name,
-  		state: this.filter.state,
-  		city: this.filter.city,
-  		category: this.filter.category,
-  		createdAt: {
-  			$gte: new Date(this.filter.from['formatted']),
-  			$lte: new Date(this.filter.to['formatted'])
-  		}
+  	type createdAt = {
+  		$gte?: Date,
+  		$lte?: Date
+  	}
+  	type queryType = {
+  		name?: string,
+  		city?: string,
+  		state?: string,
+  		createdAt?: createdAt,
+  		category?: string
   	};
+  	let query:queryType = {};
+
+  	if(this.filter.state) query.state = this.filter.state;
+  	if(this.filter.city) query.city = this.filter.city;
+  	if(this.filter.category) query.category = this.filter.category;
+  	if(this.filter.from || this.filter.to) {
+  		query.createdAt= {};
+  		if(this.filter.from) {
+  			query.createdAt.$gte = new Date(this.filter.from['formatted']);
+  		}
+  		if(this.filter.to) {
+  			query.createdAt.$lte = new Date(this.filter.to['formatted']);
+  		}
+  	}
   	if(this.filter.name) {
   		query["$text"] = {
   		 	$search : this.filter.name
@@ -44,6 +59,7 @@ export class AdvancedformComponent implements OnInit {
   			}
   		}
   	}
+
   	this.itemSrvc.ensureLoaded(query);
   }
 
