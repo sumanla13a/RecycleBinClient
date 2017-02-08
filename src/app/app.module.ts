@@ -17,7 +17,8 @@ import { RecycleBinRoutes } from './app.routes';
 
 import { ItemListResolver } from './items-list/items.resolver';
 import { AddItemComponent } from './add-item/add-item.component';
-
+import { SingleItemComponent } from './single-item/single-item.component';
+import { SingleItemResolver } from './single-item/single-item.resolver';
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
 }
@@ -28,7 +29,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ToolbarComponent,
     ItemsListComponent,
     ErrorComponent,
-    AddItemComponent
+    AddItemComponent,
+    SingleItemComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,11 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     RecycleBinRoutes,
     ReactiveFormsModule
   ],
-  providers: [AuthService, ItemsService, ItemListResolver, {
+  providers: [
+    AuthService,
+    ItemsService,
+    ItemListResolver,
+    SingleItemResolver, {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [ Http, RequestOptions ]

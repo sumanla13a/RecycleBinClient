@@ -11,6 +11,7 @@ export type contacts = {
 }
 
 export type items = {
+	_id?: string,
 	name: string,
 	description?: string,
 	details?: string,
@@ -62,7 +63,7 @@ export class ItemsService {
 	  				this.listItems = res.json().data;
 	  				resolve(res);
 	  			},
-	  			err => reject(err),
+	  			reject,
 	  			() => this.defer.queried = false
 			);
   		});
@@ -74,8 +75,30 @@ export class ItemsService {
   postForm(data:any) {
 	this.defer = new Promise((resolve, reject) => {
 		this.authHttp.post(BaseUrl + '/items', data).subscribe(
-			res => this.router.navigate(['/home'])
+			res => this.router.navigate(['/items'])
 		);
 	});
+  }
+
+  getById(id:string) {
+  	let item;
+  	if(this.listItems && this.listItems.length) {
+  		console.log('here');
+  		item = this.listItems.find(it => it._id === id);
+  	}
+  	if(!item) {
+  		return new Promise((resolve, reject) => {
+  			this.authHttp.get(BaseUrl + '/items/' + id).subscribe(
+  				res => {
+  					this.currentItem = res.json().data
+  					resolve(this.currentItem);
+  				},
+  				reject
+			);
+  		})
+  	} else {
+  		this.currentItem = item;
+  		return Promise.resolve(item);
+  	}
   }
 }

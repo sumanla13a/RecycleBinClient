@@ -5,20 +5,29 @@ import { ErrorComponent } from './error/error.component';
 
 import { ItemListResolver } from './items-list/items.resolver';
 import { AddItemComponent } from './add-item/add-item.component';
+import { SingleItemComponent } from './single-item/single-item.component';
+import { SingleItemResolver } from './single-item/single-item.resolver';
+
 const routes: Routes = [
 	{
 		path:'',
-		redirectTo:'home',
+		redirectTo:'items',
 		pathMatch: 'full'
 	}, {
-		path:'home',
+		path:'items',
 		component: ItemsListComponent,
 		resolve: {
 			items: ItemListResolver
 		}
 	}, {
-		path: 'home/add',
+		path: 'items/add',
 		component: AddItemComponent
+	},{
+		path: 'items/:id',
+		component: SingleItemComponent,
+		resolve: {
+			item: SingleItemResolver
+		}
 	}, {
 		path: '404',
 		component: ErrorComponent
