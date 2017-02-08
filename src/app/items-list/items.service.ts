@@ -56,10 +56,10 @@ export class ItemsService {
   		this.defer.promise = new Promise((resolve, reject) => {
   			this.http.get(BaseUrl + '/items', {
   				'search': params
-  			}).map(res => res.json())
+  			})
   			.subscribe(
 	  			res => {
-	  				this.listItems = res;
+	  				this.listItems = res.json().data;
 	  				resolve(res);
 	  			},
 	  			err => reject(err),

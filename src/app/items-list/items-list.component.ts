@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthHttp } from 'angular2-jwt';
-import 'rxjs/add/operator/map';
+import { ItemsService } from './items.service';
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
@@ -8,9 +7,8 @@ import 'rxjs/add/operator/map';
 })
 export class ItemsListComponent implements OnInit {
   users: any[];
-  constructor(private authHttp: AuthHttp) { }
+  constructor(private itemSrvc: ItemsService) { }
 
   ngOnInit() {
-
   }
 }
