@@ -38,9 +38,11 @@ export class ItemsService {
   defer:any = {
   	queried: false
   };
+  loadMore:boolean;
   querySaved:any;
   loadMore() {
     this.querySaved.skip = this.listItems.length;
+    this.loadMore = true;
     this.ensureLoaded(this.querySaved);
   }
 
@@ -68,7 +70,12 @@ export class ItemsService {
   			})
   			.subscribe(
 	  			res => {
-	  				this.listItems = res.json().data;
+            if(this.listItems.length && this.loadMore) {
+              res.json().data.forEach(e => this.listItems.push(e));
+              this.loadMore = false;
+            } else {
+	  				  this.listItems = res.json().data;
+            }
 	  				resolve(res);
 	  			},
 	  			reject,
