@@ -31,18 +31,18 @@ export class ItemsService {
 
   constructor(private http: Http, private authHttp: AuthHttp, private router: Router) { }
 
-  listItems:items[];
+  listItems:items[] = [];
   currentItem: items;
 
   queried:boolean;
   defer:any = {
   	queried: false
   };
-  loadMore:boolean;
+  showMore:boolean;
   querySaved:any;
   loadMore() {
     this.querySaved.skip = this.listItems.length;
-    this.loadMore = true;
+    this.showMore = true;
     this.ensureLoaded(this.querySaved);
   }
 
@@ -70,9 +70,9 @@ export class ItemsService {
   			})
   			.subscribe(
 	  			res => {
-            if(this.listItems.length && this.loadMore) {
+            if(this.listItems.length && this.showMore) {
               res.json().data.forEach(e => this.listItems.push(e));
-              this.loadMore = false;
+              this.showMore = false;
             } else {
 	  				  this.listItems = res.json().data;
             }
