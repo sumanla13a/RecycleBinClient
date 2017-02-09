@@ -3,15 +3,25 @@
     <h2 class="mdl-card__title-text">{{itemsSrvc.currentItem.name}}</h2>
   </div>
   <div class="mdl-card__supporting-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Mauris sagittis pellentesque lacus eleifend lacinia...
+     <img class="productImg" src="{{BaseUrl}}/images/{{itemsSrvc.currentItem.img}}" width="<300></300>px" height="225px"/>			
+	  <div></div>
   </div>
   <div class="mdl-card__actions mdl-card--border">
     <!-- <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
       Contact me
     </a> -->
+    <h5>Description</h5>
     <p>
     	{{itemsSrvc.currentItem.description}}
+    </p>
+    <h5>Details</h5>
+    <p>
+    	{{itemsSrvc.currentItem.details}}
+    </p>
+    <h5>Contact</h5>
+    <p>
+    	{{itemsSrvc.currentItem.contact.phone}}<br/>
+      {{itemsSrvc.currentItem.city}}, {{itemsSrvc.currentItem.state}}
     </p>
   </div>
   <div class="mdl-card__menu">

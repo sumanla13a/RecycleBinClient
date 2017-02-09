@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ItemsService } from '../items-list/items.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import { BaseUrl } from '../app.constants';
 
@@ -14,7 +14,7 @@ export class UploadImageComponent implements OnInit {
   uploadImageForm:FormGroup;
   id:string;
   filesToUpload: Array<File>; 
-  constructor(private fb: FormBuilder, private itemSrvc: ItemsService,route:ActivatedRoute) { 
+  constructor(private fb: FormBuilder, private itemSrvc: ItemsService,route:ActivatedRoute,public router: Router) { 
     this.filesToUpload = [];
     route.queryParams.subscribe(params => {this.id = params['id'];});
     console.log("thi is id: ",this.id);
@@ -24,7 +24,7 @@ export class UploadImageComponent implements OnInit {
   }
   upload() {
       this.makeFileRequest(BaseUrl+"/items/upload", [], this.filesToUpload).then((result) => {
-          console.log(result);
+           this.router.navigate(['/items'])
       }, (error) => {
           console.error(error);
       });

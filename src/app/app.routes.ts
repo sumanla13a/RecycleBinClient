@@ -41,7 +41,7 @@ const routes: Routes = [
 			item: SingleItemResolver
 		}
 	}, {
-		path: 'upload',
+		path: 'items/add/upload',
 		component: UploadImageComponent
 	}, {
 		path: '404',

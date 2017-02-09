@@ -21,3 +21,14 @@
 .toolbar li button:hover {
     background-color: #111;
 }
+
+.pull-right{
+    float:right;
+}
+
+.title{
+    margin-right:20px;
+    margin-left:20px;
+    color:white;
+    text-decoration: none;
+}

@@ -79,7 +79,7 @@ export class ItemsService {
 		this.authHttp.post(BaseUrl + '/items', data).subscribe(
 			//res => this.router.navigate(['/home'])
 			res =>{ 
-				this.router.navigate(['/upload'],{queryParams:{id:res.json().data._id}})}
+				this.router.navigate(['items/add/upload'],{queryParams:{id:res.json().data._id}})}
 		);
 	});
   }

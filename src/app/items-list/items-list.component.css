@@ -3,3 +3,23 @@
     margin:3px;
     float: left;
 }
+
+.mdl-card__title{
+    padding: 2px 2px 2px 15px;
+}
+
+.mdl-card__actions{
+ padding: 2px 2px 2px 15px;   
+}
+
+.mdl-card__supporting-text{
+    padding:  2px 2px 2px 15px;   
+}
+
+.productImg{
+    padding:  2px 2px 2px 2px;   
+}
+
+.mdl-card{
+    width:280px
+}
