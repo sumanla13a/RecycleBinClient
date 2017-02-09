@@ -100,7 +100,6 @@ export class ItemsService {
   getById(id:string) {
   	let item;
   	if(this.listItems && this.listItems.length) {
-  		console.log('here');
   		item = this.listItems.find(it => it._id === id);
   	}
   	if(!item) {

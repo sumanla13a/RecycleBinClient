@@ -2,3 +2,12 @@
 	width: 80%;
 	margin: 0 auto;
 }
+
+.lefted{
+	display: inline-block;
+	margin-right: 25px;
+}
+
+.righted {
+	display: inline-block;
+}

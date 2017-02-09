@@ -11,7 +11,6 @@ export class SingleItemComponent implements OnInit {
   BaseUrl:string;
   constructor(private itemsSrvc:ItemsService) { 
     this.BaseUrl = BaseUrl;
-  	
   }
 
   ngOnInit() {

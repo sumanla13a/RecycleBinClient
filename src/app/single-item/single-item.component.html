@@ -1,33 +1,39 @@
 <div class="demo-card-wide mdl-card mdl-shadow--2dp cards_comp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">{{itemsSrvc.currentItem.name}}</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-     <img class="productImg" src="{{BaseUrl}}/images/{{itemsSrvc.currentItem.img}}" width="<300></300>px" height="225px"/>			
-	  <div></div>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <!-- <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+  <div>
+    <div class="lefted">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">{{itemsSrvc.currentItem.name}}</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <img class="productImg" src="{{BaseUrl}}/images/{{itemsSrvc.currentItem.img}}" width="<300></300>px" height="225px" />
+        <div></div>
+      </div>
+    </div>
+    <div class="righted">
+      <div class="mdl-card__actions mdl-card--border">
+        <!-- <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
       Contact me
     </a> -->
-    <a [routerLink]="['/items','update',itemsSrvc.currentItem._id]" >Update</a>
-    <h5>Description</h5>
-    <p>
-    	{{itemsSrvc.currentItem.description}}
-    </p>
-    <h5>Details</h5>
-    <p>
-    	{{itemsSrvc.currentItem.details}}
-    </p>
-    <h5>Contact</h5>
-    <p>
-    	{{itemsSrvc.currentItem.contact.phone}}<br/>
-      {{itemsSrvc.currentItem.city}}, {{itemsSrvc.currentItem.state}}
-    </p>
-  </div>
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <h5>Description</h5>
+        <p>
+          {{itemsSrvc.currentItem.description}}
+        </p>
+        <h5>Details</h5>
+        <p>
+          {{itemsSrvc.currentItem.details}}
+        </p>
+        <h5>Contact</h5>
+        <p>
+          {{itemsSrvc.currentItem.contact.phone}}<br/> {{itemsSrvc.currentItem.city}}, {{itemsSrvc.currentItem.state}}
+        </p>
+        <a [routerLink]="['/items','update',itemsSrvc.currentItem._id]">Update</a>
+        
+      </div>
+      <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
       <i class="material-icons">share</i>
     </button>
+      </div>
+    </div>
   </div>
 </div>

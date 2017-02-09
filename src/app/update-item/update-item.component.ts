@@ -5,6 +5,7 @@ import { ItemsService } from '../items-list/items.service';
 import { AddItemService } from '../add-item/add-item.service';
 import { AuthService } from '../services/auth.service'; 
 import { Ng2MapComponent } from 'ng2-map';
+import {Router} from '@angular/router';
 
 Ng2MapComponent['apiUrl'] = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9KSi-1KtZY0J8xFZp_i23nd6tXyiYy84&libraries=visualization,places";
 
@@ -22,7 +23,7 @@ export class UpdateItemComponent implements OnInit {
 	state:string;
 	city:string;
 	coords:any;
-	constructor(private fb: FormBuilder, private itemSrvc: ItemsService, private addItmSrvc: AddItemService, private auth: AuthService, private ref: ChangeDetectorRef) {
+	constructor(private fb: FormBuilder, private itemSrvc: ItemsService, private addItmSrvc: AddItemService, private auth: AuthService, public ref: ChangeDetectorRef,public router:Router) {
 		this.addItemForm = fb.group({
 			name: ['', Validators.required],
 			description: [''],
@@ -88,7 +89,9 @@ export class UpdateItemComponent implements OnInit {
   	}
 
   	delete() {
-  		console.log('deleted');
-  		this.itemSrvc.deleteCurrent()/*.then(res => this.router.navigate['items'])*/;
+  		this.itemSrvc.deleteCurrent().then(res =>{ 
+			  console.log('item deleted');
+			  this.router.navigate(['items']);
+			});
   	}
 }
