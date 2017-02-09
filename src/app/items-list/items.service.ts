@@ -22,7 +22,8 @@ export type items = {
 	coords: number[],
 	img?: string,
 	createdAt?: Date,
-	updatedAt?: Date
+	updatedAt?: Date,
+  deleted?: boolean
 }
 
 @Injectable()
@@ -97,11 +98,24 @@ export class ItemsService {
   					resolve(this.currentItem);
   				},
   				reject
-			);
+			  );
   		})
   	} else {
   		this.currentItem = item;
   		return Promise.resolve(item);
   	}
+  }
+
+  deleteCurrent() {
+    return new Promise((resolve, reject) => {
+      this.currentItem.deleted = true;
+      this.authHttp.post(BaseUrl + '/items/' + this.currentItem._id + '/delete', this.currentItem).subscribe(
+        res => {
+          this.currentItem = res.json().data
+          resolve(this.currentItem);
+        },
+        reject
+      );
+    });
   }
 }

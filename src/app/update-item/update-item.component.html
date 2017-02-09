@@ -1,0 +1,57 @@
+<div class="mdl-grid">
+	<form [formGroup]="addItemForm" (ngSubmit)="submit()" class="mdl-cell mdl-cell--4-col mdl-cell--2-offset">
+		<div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input type="text" [formControl]="addItemForm.controls['name']" class="mdl-textfield__input" id="addItemFormName" name="name">
+				<label class="mdl-textfield__label" for="addItemFormName">Name</label>
+				<span class="error_happens" *ngIf="!addItemForm.controls['name'].valid && addItemForm.controls['name'].touched">Required</span>
+			</div>
+		</div>
+		<div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" id="details" name="email" [formControl]="addItemForm.controls['details']">
+				<label class="mdl-textfield__label" for="addItemFormEmail">Details</label>
+			</div>
+		</div>
+		<div>
+			<div class="mdl-textfield mdl-js-textfield">
+				<textarea class="mdl-textfield__input" name="description" [formControl]="addItemForm.controls['description']" id="" cols="30"
+					rows="10"></textarea>
+					<label class="mdl-textfield__label" for="sample5">Text lines...</label>
+			</div>
+		</div>
+		<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+			<select id="category" name="category" class="mdl-selectfield__select" [formControl]="addItemForm.controls['category']">
+				<option value="" disabled=""></option>
+				<option [value]="'offered'">Offered</option>
+				<option [value]="'wanted'">Wanted</option>
+		    </select>
+		    <label for="state " class="mdl-selectfield__label ">Category</label>
+	    </div>
+		<div>
+			<div class="mdl-textfield mdl-js-textfield">
+				<input type="text" [formControl]="addItemForm.controls['contact'].controls['email']" class="mdl-textfield__input" id="addItemFormEmail"
+					name="email">
+					<label class="mdl-textfield__label" for="addItemFormEmail">Email</label>
+					<span class="error_happens" *ngIf="!addItemForm.controls['contact'].controls['email'].valid && addItemForm.controls['contact'].controls['email'].touched">Required</span>
+			</div>
+		</div>
+		<div>
+			<div class="mdl-textfield mdl-js-textfield">
+				<input type="text" [formControl]="addItemForm.controls['contact'].controls['phone']" class="mdl-textfield__input" id="addItemFormPhone"
+					name="phone">
+					<label class="mdl-textfield__label" for="addItemFormPhone">Phone No.</label>
+			</div>
+		</div>
+	    <div>
+			<div class="mdl-textfield mdl-js-textfield">
+				<input type="text" [formControl]="addItemForm.controls['location']" places-auto-complete (initialized$)="initialized($event)" (place_changed)="placeChanged(place)" [types]="['geocode']" class="mdl-textfield__input" id="Place" name="search">
+					<label class="mdl-textfield__label" for="Place">Search Place</label>
+			</div>
+		</div>
+		<br>
+		<br>
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect " type="submit " [disabled]="!addItemForm.valid ">Submit</button>
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="delete()" type="button">Delete</button>
+	</form>
+</div>

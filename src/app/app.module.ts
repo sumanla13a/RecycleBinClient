@@ -29,6 +29,7 @@ import { AdvancedformComponent } from './advancedform/advancedform.component';
 import { AddItemCanActivate } from './add-item/add-item.guard';
 
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { UpdateItemComponent } from './update-item/update-item.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({}), http, options);
@@ -43,7 +44,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AddItemComponent,
     SingleItemComponent,
     AdvancedformComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    UpdateItemComponent
   ],
   imports: [
     BrowserModule,

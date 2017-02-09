@@ -11,6 +11,8 @@ import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 
 import {UploadImageComponent} from './upload-image/upload-image.component';
+
+import { UpdateItemComponent } from './update-item/update-item.component';
 const routes: Routes = [
 	{
 		path:'',
@@ -29,6 +31,12 @@ const routes: Routes = [
 	},{
 		path: 'items/:id',
 		component: SingleItemComponent,
+		resolve: {
+			item: SingleItemResolver
+		}
+	}, {
+		path: 'items/update/:id',
+		component: UpdateItemComponent,
 		resolve: {
 			item: SingleItemResolver
 		}
