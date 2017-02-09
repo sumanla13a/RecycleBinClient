@@ -11,13 +11,16 @@ import { SingleItemComponent } from './single-item/single-item.component';
 import { SingleItemResolver } from './single-item/single-item.resolver';
 
 import {UploadImageComponent} from './upload-image/upload-image.component';
-
 import { UpdateItemComponent } from './update-item/update-item.component';
+import {AboutusComponent} from './aboutus/aboutus.component';
 const routes: Routes = [
 	{
 		path:'',
 		redirectTo:'items',
 		pathMatch: 'full'
+	}, {
+		path: 'aboutus',
+		component: AboutusComponent
 	}, {
 		path:'items',
 		component: ItemsListComponent,
