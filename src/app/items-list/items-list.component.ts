@@ -20,4 +20,8 @@ export class ItemsListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  loadMore() {
+    
+  }
 }

@@ -38,17 +38,23 @@ export class ItemsService {
   defer:any = {
   	queried: false
   };
+  querySaved:any;
+  loadMore() {
+    this.querySaved.skip = this.listItems.length;
+    this.ensureLoaded(this.querySaved);
+  }
 
   ensureLoaded(query?:any) {
 
   	query = query || {};
+
 	if(!query.skip) {
 		query.skip = 0;
 	}
 	if(!query.limit) {
 		query.limit = 10;
 	}
-
+  this.querySaved = query;
 	let params: URLSearchParams = new URLSearchParams();
 	for(let key in query){
 		params.set('query', JSON.stringify(query));

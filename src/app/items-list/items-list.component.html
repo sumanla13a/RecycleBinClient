@@ -1,5 +1,6 @@
 <app-advancedform></app-advancedform>
 
+<div>
 <div class="" *ngFor="let item of this.itemSrvc.listItems">
 		
 	<div class="itemList demo-card-wide mdl-card mdl-shadow--2dp cards_comp">
@@ -21,3 +22,7 @@
 	  </div>-->
 	</div>
 </div>
+</div>
+
+<div>
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="this.itemSrvc.loadMore()">Load More</button></div>
