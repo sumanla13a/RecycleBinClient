@@ -2,7 +2,7 @@
   <img src="{{BaseUrl}}/images/logo.jpg" width="200px" [routerLink]="['items']" />
   <button class="pull-right title mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="auth.login()" *ngIf="!auth.authenticated()">Login</button>
   <button class="pull-right title mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="auth.logout()" *ngIf="auth.authenticated()">Logout</button>
- 
+  <button class="pull-right title mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="donatedByMe()" *ngIf="auth.authenticated()">Donated By Me</button>
  <a class="pull-right title" [routerLink]="['aboutus']">About Us</a>
  <a class="pull-right title" [routerLink]="['items', 'add']" *ngIf="auth.authenticated()">Donate Item</a>
  <a class="pull-right title" [routerLink]="['items']" *ngIf="auth.authenticated()">View Items</a>
